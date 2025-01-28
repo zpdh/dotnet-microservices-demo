@@ -4,9 +4,9 @@ namespace Api.Domain.Core;
 
 public abstract class Entity : IEquatable<Entity>
 {
-    public Guid Id { get; private init; }
+    public int Id { get; private init; }
 
-    protected Entity(Guid id)
+    protected Entity(int id)
     {
         Id = id;
     }

@@ -25,7 +25,7 @@ public class Result
             : Failure(Error.ConditionNotMet);
     }
 
-    public static Result<TValue> Create<TValue>(TValue value)
+    public static Result<TValue> Create<TValue>(TValue? value)
     {
         return value is not null
             ? Success<TValue>(value)
@@ -66,7 +66,7 @@ public class Result<TValue> : Result
         _value = value;
     }
 
-    public static implicit operator Result<TValue>(TValue value)
+    public static implicit operator Result<TValue>(TValue? value)
     {
         return Create(value);
     }

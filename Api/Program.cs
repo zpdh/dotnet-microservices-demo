@@ -1,4 +1,5 @@
-using Api.Domain.Core;
+using Api.App;
+using Api.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,9 @@ builder.Services.AddRouting(opt => {
     opt.LowercaseUrls = true;
     opt.LowercaseQueryStrings = true;
 });
+
+builder.Services.AddInfrastructure();
+builder.Services.AddApplication();
 
 builder.Services.AddOpenApi();
 
