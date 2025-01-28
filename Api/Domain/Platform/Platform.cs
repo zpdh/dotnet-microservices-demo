@@ -1,6 +1,9 @@
-﻿namespace Api.Domain.Platform;
+﻿using Api.Domain.Core;
 
-public class Platform
+namespace Api.Domain.Platform;
+
+public class Platform : Entity
 {
-    
+    public string Name { get; set; } = string.Empty;
+    public string Publisher { get; set; } = string.Empty;
 }
