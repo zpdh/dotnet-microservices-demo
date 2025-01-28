@@ -16,4 +16,9 @@
         <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.1" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="App\Core\" />
+      <Folder Include="Domain\Infrastructure\Data\" />
+    </ItemGroup>
+
 </Project>

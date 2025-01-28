@@ -1,5 +1,6 @@
 ﻿using Api.Domain.Platform;
 using Api.Infrastructure.Core;
+using Api.Infrastructure.Core.Data;
 
 namespace Api.Infrastructure.Extensions;
 
