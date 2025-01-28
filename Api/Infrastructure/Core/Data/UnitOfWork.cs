@@ -1,12 +1,10 @@
-﻿using Api.Domain.Core;
-using Api.Domain.Infrastructure.Data.Abstractions;
-using Microsoft.EntityFrameworkCore;
+﻿using Api.Domain.Infrastructure.Data.Abstractions;
 
-namespace Api.Infrastructure.Core;
+namespace Api.Infrastructure.Core.Data;
 
-public class UnitOfWork(DbContext context) : IUnitOfWork
+public class UnitOfWork(AppDbContext context) : IUnitOfWork
 {
-    private readonly DbContext _context = context;
+    private readonly AppDbContext _context = context;
 
     public async Task SaveChangesAsync()
     {

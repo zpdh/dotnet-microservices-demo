@@ -8,10 +8,10 @@ namespace Api.Infrastructure.Repositories;
 
 public class PlatformRepository(AppDbContext context) : IRepository<Platform>
 {
-    private readonly AppDbContext _context = context;
+    private readonly DbSet<Platform> _dbSet = context.Set<Platform>();
 
     public async Task<Result<Platform>> GetByIdAsync(int id)
     {
-        return await _context.Set<Platform>().FirstOrDefaultAsync(plat => plat.Id == id);
+        return await _dbSet.FirstOrDefaultAsync(plat => plat.Id == id);
     }
 }

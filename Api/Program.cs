@@ -1,5 +1,6 @@
 using Api.App;
 using Api.Infrastructure;
+using Api.Infrastructure.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,5 +31,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.SeedDatabase();
 
 app.Run();
