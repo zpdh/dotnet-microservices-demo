@@ -1,5 +1,3 @@
-﻿using Api.Domain.Core;
-
-namespace Api.App.Core.Messaging.Abstractions;
+﻿namespace Api.App.Core.Messaging.Abstractions;
 
 public interface IQuery<TResponse>;

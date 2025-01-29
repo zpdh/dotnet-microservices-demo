@@ -4,6 +4,7 @@ public class Result
 {
     public Error Error { get; }
     public bool IsSuccess { get; }
+    public bool IsFailure => !IsSuccess;
 
     protected Result(Error err)
     {
@@ -20,8 +21,8 @@ public class Result
 
     public static Result Create(bool condition)
     {
-        return condition 
-            ? Success() 
+        return condition
+            ? Success()
             : Failure(Error.ConditionNotMet);
     }
 

@@ -12,18 +12,13 @@ public static class DependencyInjection
         services.AddQueries();
     }
 
-    private static void AddMediator(this IServiceCollection services)
-    {
-        services.AddScoped<IMediator, Mediator>();
-    }
-
     private static void AddCommands(this IServiceCollection services)
     {
         var commandHandlerTypes = GetHandlerTypes(typeof(ICommandHandler<>), typeof(ICommandHandler<,>));
 
         foreach (var handlerGroup in commandHandlerTypes)
         {
-            services.AddTransient(handlerGroup.InterfaceType, handlerGroup.ConcreteType);
+            services.AddScoped(handlerGroup.InterfaceType, handlerGroup.ConcreteType);
         }
     }
 
@@ -33,7 +28,7 @@ public static class DependencyInjection
 
         foreach (var handlerGroup in handlerTypes)
         {
-            services.AddTransient(handlerGroup.InterfaceType, handlerGroup.ConcreteType);
+            services.AddScoped(handlerGroup.InterfaceType, handlerGroup.ConcreteType);
         }
     }
 
