@@ -10,8 +10,18 @@ public class PlatformRepository(AppDbContext context) : IRepository<Platform>
 {
     private readonly DbSet<Platform> _dbSet = context.Set<Platform>();
 
+    public async Task<Result<List<Platform>>> GetAllAsync()
+    {
+        return await _dbSet.AsNoTracking().ToListAsync();
+    }
+
     public async Task<Result<Platform>> GetByIdAsync(int id)
     {
         return await _dbSet.FirstOrDefaultAsync(plat => plat.Id == id);
+    }
+
+    public async Task InsertAsync(Platform entity)
+    {
+        await _dbSet.AddAsync(entity);
     }
 }

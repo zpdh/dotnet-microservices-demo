@@ -2,7 +2,7 @@
 
 namespace Api.Domain.Platform;
 
-public class Platform : Entity
+public sealed class Platform : Entity
 {
     public string Name { get; set; } = string.Empty;
     public string Publisher { get; set; } = string.Empty;
