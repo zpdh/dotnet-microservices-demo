@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Api.Controllers;
 
-public class PlatformController : ApiController
+public class PlatformController(IMediator mediator) : ApiController(mediator)
 {
     [Route("/{id:int}")]
     public async Task<IActionResult> GetPlatformById(
@@ -16,7 +16,7 @@ public class PlatformController : ApiController
         var request = new GetPlatformByIdRequest(id);
         var query = new GetPlatformByIdQuery(request);
 
-        var result = await queryHandler.HandleAsync(query);
+        var result = await Mediator.MediateAsync<GetPlatformByIdQuery, GetPlatformByIdResponse>(query);
 
         return Ok(result);
     }
