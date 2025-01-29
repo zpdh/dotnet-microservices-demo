@@ -1,12 +1,6 @@
 ﻿using Api.Domain.Core;
 
-namespace Api.App.Core.Messaging;
-
-public interface IBaseCommand;
-
-public interface ICommand : IBaseCommand;
-
-public interface ICommand<TResponse> : IBaseCommand;
+namespace Api.App.Core.Messaging.Abstractions;
 
 public interface ICommandHandler<in TCommand>
     where TCommand : ICommand

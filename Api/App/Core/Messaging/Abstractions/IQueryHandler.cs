@@ -1,8 +1,6 @@
 ﻿using Api.Domain.Core;
 
-namespace Api.App.Core.Messaging;
-
-public interface IQuery<TResponse>;
+namespace Api.App.Core.Messaging.Abstractions;
 
 public interface IQueryHandler<in TQuery, TResponse> where TQuery : IQuery<TResponse>
 {
