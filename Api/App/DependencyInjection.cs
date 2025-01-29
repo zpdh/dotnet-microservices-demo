@@ -21,10 +21,7 @@ public static class DependencyInjection
     {
         var commandHandlerTypes = GetHandlerTypes(
             typeof(IRequestHandler<>),
-            typeof(IRequestHandler<,>),
-            typeof(ICommandHandler<>),
-            typeof(ICommandHandler<,>),
-            typeof(IQueryHandler<,>));
+            typeof(IRequestHandler<,>));
 
         foreach (var handlerGroup in commandHandlerTypes)
         {
