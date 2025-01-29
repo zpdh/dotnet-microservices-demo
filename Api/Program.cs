@@ -1,4 +1,5 @@
 using Api.App;
+using Api.App.Core.Messaging;
 using Api.Infrastructure;
 using Api.Infrastructure.Extensions;
 
@@ -34,4 +35,4 @@ app.MapControllers();
 
 app.SeedDatabase();
 
-app.Run();
+await app.RunAsync();
