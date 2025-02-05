@@ -18,6 +18,8 @@ builder.Services.AddApplication();
 
 builder.Services.AddOpenApi();
 
+builder.WebHost.UseUrls("http://0.0.0.0:80");
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -33,5 +35,7 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.SeedDatabase();
+
+app.UseExceptionHandler(_ => { });
 
 await app.RunAsync();
