@@ -8,7 +8,7 @@ namespace Platform.Api.Api.Controllers;
 public class PlatformController(IMediator mediator) : ApiController(mediator)
 {
     [HttpGet]
-    [Route("/{id:int}")]
+    [Route("{id:int}")]
     public async Task<IActionResult> GetPlatformById(int id)
     {
         var request = new GetPlatformByIdRequest(id);
@@ -16,7 +16,7 @@ public class PlatformController(IMediator mediator) : ApiController(mediator)
 
         var result = await Mediator.MediateAsync<GetPlatformByIdQuery, GetPlatformByIdResponse>(query);
 
-        return Ok(result);
+        return result.IsSuccess ? Ok(result.Value) : HandleFailure(result);
     }
 
     [HttpGet]
@@ -26,7 +26,7 @@ public class PlatformController(IMediator mediator) : ApiController(mediator)
 
         var result = await Mediator.MediateAsync<GetAllPlatformsQuery, GetAllPlatformsResponse>(query);
 
-        return Ok(result);
+        return result.IsSuccess ? Ok(result.Value) : HandleFailure(result);
     }
 
     [HttpPost]
@@ -36,6 +36,6 @@ public class PlatformController(IMediator mediator) : ApiController(mediator)
 
         var result = await Mediator.MediateAsync<CreatePlatformCommand, CreatePlatformResponse>(command);
 
-        return Created("", result.Value);
+        return result.IsSuccess ? Created("", result.Value) : HandleFailure(result);
     }
 }
