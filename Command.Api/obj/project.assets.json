@@ -33,6 +33,16 @@
             "related": ".pdb;.xml"
           }
         }
+      },
+      "Command.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/Command.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Command.Domain.dll": {}
+        }
       }
     }
   },
@@ -67,10 +77,16 @@
         "microsoft.openapi.1.6.17.nupkg.sha512",
         "microsoft.openapi.nuspec"
       ]
+    },
+    "Command.Domain/1.0.0": {
+      "type": "project",
+      "path": "../Command.Domain/Command.Domain.csproj",
+      "msbuildProject": "../Command.Domain/Command.Domain.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net9.0": [
+      "Command.Domain >= 1.0.0",
       "Microsoft.AspNetCore.OpenApi >= 9.0.1"
     ]
   },
@@ -106,7 +122,11 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Pedro\\RiderProjects\\microservices-demo\\Command.Domain\\Command.Domain.csproj": {
+              "projectPath": "C:\\Users\\Pedro\\RiderProjects\\microservices-demo\\Command.Domain\\Command.Domain.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

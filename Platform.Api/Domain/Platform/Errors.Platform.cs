@@ -6,6 +6,6 @@ public static class DomainError
 {
     public static class Platform
     {
-        public static Core.Error NotFound(int id) => new($"Platform with id {id} not found.");
+        public static Error NotFound(int id) => new($"Platform with id {id} not found.");
     }
 }
