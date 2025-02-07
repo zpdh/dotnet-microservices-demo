@@ -9,5 +9,5 @@ public interface IRequestHandler<in TRequest> where TRequest : IRequest
 
 public interface IRequestHandler<in TRequest, TResponse> where TRequest : IRequest<TResponse>
 {
-    Task<Result<TResponse>> HandleAsync(TRequest query);
+    Task<Result<TResponse>> HandleAsync(TRequest request);
 }
