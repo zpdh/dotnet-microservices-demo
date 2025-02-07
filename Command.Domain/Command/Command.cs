@@ -1,6 +1,8 @@
-﻿namespace Command.Domain.Command;
+﻿using Command.Domain.Core;
 
-public class Command
+namespace Command.Domain.Command;
+
+public class Command : Entity
 {
-    
+
 }

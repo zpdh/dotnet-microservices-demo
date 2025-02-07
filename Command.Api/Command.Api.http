@@ -1,4 +1,4 @@
-@Command.Api_HostAddress = http://localhost:5249
+@Command.Api_HostAddress = http://localhost:6249
 
 GET {{Command.Api_HostAddress}}/weatherforecast/
 Accept: application/json
