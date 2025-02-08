@@ -11,11 +11,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Controllers\" />
-    </ItemGroup>
-
-    <ItemGroup>
+      <ProjectReference Include="..\Command.App\Command.App.csproj" />
       <ProjectReference Include="..\Command.Domain\Command.Domain.csproj" />
+      <ProjectReference Include="..\Command.Infrastructure\Command.Infrastructure.csproj" />
+      <ProjectReference Include="..\Platform.Api\Platform.Api.csproj" />
     </ItemGroup>
 
 </Project>

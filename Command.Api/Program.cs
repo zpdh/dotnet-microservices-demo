@@ -1,8 +1,19 @@
+using Command.App;
+using Command.Infrastructure;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+builder.Services.AddRouting(opt => {
+    opt.LowercaseUrls = true;
+    opt.LowercaseQueryStrings = true;
+});
+
+builder.Services.InjectApplication();
+builder.Services.InjectInfrastructure();
 
 builder.Services.AddOpenApi();
 

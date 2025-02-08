@@ -12,7 +12,8 @@ public static class Application
 
     public static void InjectApplication(this IServiceCollection services)
     {
-
+        services.AddRequestHandlers();
+        services.AddMediator();
     }
 
     private static void AddMediator(this IServiceCollection services)
