@@ -29,6 +29,6 @@ public static class DependencyInjection
 
     private static void AddHttpClients(this IServiceCollection services)
     {
-        services.AddScoped<IPlatformClient, PlatformClient>();
+        services.AddHttpClient<IPlatformClient, PlatformClient>();
     }
 }
