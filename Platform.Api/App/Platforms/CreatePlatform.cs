@@ -5,11 +5,9 @@ using Platform.Api.Domain.Infrastructure.Data.Abstractions;
 
 namespace Platform.Api.App.Platforms;
 
-public sealed record CreatePlatformRequest(string Name, string Publisher);
-
 public sealed record CreatePlatformResponse(int Id);
 
-public sealed record CreatePlatformCommand(CreatePlatformRequest Request) : ICommand<CreatePlatformResponse>;
+public sealed record CreatePlatformCommand(Communication.CreatePlatformRequest Request) : ICommand<CreatePlatformResponse>;
 
 public sealed class CreatePlatformCommandHandler(IRepository<Domain.Platform.Platform> repository, IUnitOfWork unitOfWork)
     : ICommandHandler<CreatePlatformCommand, CreatePlatformResponse>

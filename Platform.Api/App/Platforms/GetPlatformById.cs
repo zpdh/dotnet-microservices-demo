@@ -2,32 +2,27 @@
 using Platform.Api.Domain.Core;
 using Platform.Api.Domain.Infrastructure.Data.Abstractions;
 using Platform.Api.Domain.Platform;
-using Error = Platform.Api.Domain.Core.Error;
 
 namespace Platform.Api.App.Platforms;
 
-public sealed record GetPlatformByIdRequest(int Id);
-
-public sealed record GetPlatformByIdResponse(int Id, string Name, string Publisher);
-
-public sealed record GetPlatformByIdQuery(GetPlatformByIdRequest Request) : IQuery<GetPlatformByIdResponse>;
+public sealed record GetPlatformByIdQuery(Communication.GetPlatformByIdRequest Request) : IQuery<Communication.GetPlatformByIdResponse>;
 
 public class GetPlatformByIdQueryHandler(IRepository<Domain.Platform.Platform> repository)
-    : IQueryHandler<GetPlatformByIdQuery, GetPlatformByIdResponse>
+    : IQueryHandler<GetPlatformByIdQuery, Communication.GetPlatformByIdResponse>
 {
     private readonly IRepository<Domain.Platform.Platform> _repository = repository;
 
-    public async Task<Result<GetPlatformByIdResponse>> HandleAsync(GetPlatformByIdQuery query)
+    public async Task<Result<Communication.GetPlatformByIdResponse>> HandleAsync(GetPlatformByIdQuery query)
     {
         var id = query.Request.Id;
         var result = await _repository.GetByIdAsync(id);
 
         if (result.IsFailure)
         {
-            return Result.Failure<GetPlatformByIdResponse>(DomainError.Platform.NotFound(id));
+            return Result.Failure<Communication.GetPlatformByIdResponse>(DomainError.Platform.NotFound(id));
         }
 
-        var response = new GetPlatformByIdResponse(result.Value.Id,
+        var response = new Communication.GetPlatformByIdResponse(result.Value.Id,
             result.Value.Name,
             result.Value.Publisher);
 

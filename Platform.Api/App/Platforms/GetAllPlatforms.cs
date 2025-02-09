@@ -5,20 +5,18 @@ using Platform.Api.Domain.Infrastructure.Data.Abstractions;
 
 namespace Platform.Api.App.Platforms;
 
-public sealed record GetAllPlatformsResponse(List<Domain.Platform.Platform> Platforms);
-
-public sealed record GetAllPlatformsQuery : IQuery<GetAllPlatformsResponse>;
+public sealed record GetAllPlatformsQuery : IQuery<Communication.GetAllPlatformsResponse>;
 
 public sealed class GetAllPlatformsQueryHandler(IRepository<Domain.Platform.Platform> repository)
-    : IQueryHandler<GetAllPlatformsQuery, GetAllPlatformsResponse>
+    : IQueryHandler<GetAllPlatformsQuery, Communication.GetAllPlatformsResponse>
 {
     private readonly IRepository<Domain.Platform.Platform> _repository = repository;
 
-    public async Task<Result<GetAllPlatformsResponse>> HandleAsync(GetAllPlatformsQuery query)
+    public async Task<Result<Communication.GetAllPlatformsResponse>> HandleAsync(GetAllPlatformsQuery query)
     {
         var result = await _repository.GetAllAsync();
         
-        var response = new GetAllPlatformsResponse(result.Value);
+        var response = new Communication.GetAllPlatformsResponse(result.Value);
 
         return response;
     }
