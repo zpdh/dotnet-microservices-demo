@@ -4,6 +4,8 @@ public static class Communication
 {
     public sealed record CreatePlatformRequest(string Name, string Publisher);
 
+    public sealed record CreatePlatformResponse(int Id);
+
     public sealed record GetAllPlatformsResponse(List<Domain.Platform.Platform> Platforms);
 
     public sealed record GetPlatformByIdRequest(int Id);

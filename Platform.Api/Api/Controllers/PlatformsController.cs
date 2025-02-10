@@ -6,7 +6,7 @@ using Platform.Api.Domain.Platform;
 
 namespace Platform.Api.Api.Controllers;
 
-public class PlatformController(IMediator mediator) : ApiController(mediator)
+public class PlatformsController(IMediator mediator) : ApiController(mediator)
 {
     [HttpGet]
     [Route("{id:int}")]
@@ -35,7 +35,7 @@ public class PlatformController(IMediator mediator) : ApiController(mediator)
     {
         var command = new CreatePlatformCommand(request);
 
-        var result = await Mediator.MediateAsync<CreatePlatformCommand, CreatePlatformResponse>(command);
+        var result = await Mediator.MediateAsync<CreatePlatformCommand, Communication.CreatePlatformResponse>(command);
 
         return result.IsSuccess ? Created("", result.Value) : HandleFailure(result);
     }

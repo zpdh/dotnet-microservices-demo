@@ -5,24 +5,28 @@ using Platform.Api.Domain.Infrastructure.Data.Abstractions;
 
 namespace Platform.Api.App.Platforms;
 
-public sealed record CreatePlatformResponse(int Id);
+public sealed record CreatePlatformCommand(Communication.CreatePlatformRequest Request) : ICommand<Communication.CreatePlatformResponse>;
 
-public sealed record CreatePlatformCommand(Communication.CreatePlatformRequest Request) : ICommand<CreatePlatformResponse>;
-
-public sealed class CreatePlatformCommandHandler(IRepository<Domain.Platform.Platform> repository, IUnitOfWork unitOfWork)
-    : ICommandHandler<CreatePlatformCommand, CreatePlatformResponse>
+public sealed class CreatePlatformCommandHandler(
+    IRepository<Domain.Platform.Platform> repository,
+    IUnitOfWork unitOfWork,
+    IPlatformClient platformClient
+)
+    : ICommandHandler<CreatePlatformCommand, Communication.CreatePlatformResponse>
 {
     private readonly IRepository<Domain.Platform.Platform> _repository = repository;
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
+    private readonly IPlatformClient _platformClient = platformClient;
 
-    public async Task<Result<CreatePlatformResponse>> HandleAsync(CreatePlatformCommand query)
+    public async Task<Result<Communication.CreatePlatformResponse>> HandleAsync(CreatePlatformCommand query)
     {
         var entity = new Domain.Platform.Platform(query.Request.Name, query.Request.Publisher);
 
         await _repository.InsertAsync(entity);
         await _unitOfWork.SaveChangesAsync();
+        await _platformClient.SendToCommandAsync(entity);
 
-        var response = new CreatePlatformResponse(entity.Id);
+        var response = new Communication.CreatePlatformResponse(entity.Id);
 
         return response;
     }
