@@ -281,24 +281,6 @@
         "runtime": {
           "bin/placeholder/Command.Infrastructure.dll": {}
         }
-      },
-      "Platform.Api/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v9.0",
-        "dependencies": {
-          "Microsoft.AspNetCore.OpenApi": "9.0.1",
-          "Microsoft.EntityFrameworkCore": "9.0.1",
-          "Microsoft.EntityFrameworkCore.InMemory": "9.0.1"
-        },
-        "compile": {
-          "bin/placeholder/Platform.Api.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Platform.Api.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
       }
     }
   },
@@ -698,11 +680,6 @@
       "type": "project",
       "path": "../Command.Infrastructure/Command.Infrastructure.csproj",
       "msbuildProject": "../Command.Infrastructure/Command.Infrastructure.csproj"
-    },
-    "Platform.Api/1.0.0": {
-      "type": "project",
-      "path": "../Platform.Api/Platform.Api.csproj",
-      "msbuildProject": "../Platform.Api/Platform.Api.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -710,8 +687,7 @@
       "Command.App >= 1.0.0",
       "Command.Domain >= 1.0.0",
       "Command.Infrastructure >= 1.0.0",
-      "Microsoft.AspNetCore.OpenApi >= 9.0.1",
-      "Platform.Api >= 1.0.0"
+      "Microsoft.AspNetCore.OpenApi >= 9.0.1"
     ]
   },
   "packageFolders": {
@@ -755,9 +731,6 @@
             },
             "C:\\Users\\Pedro\\RiderProjects\\microservices-demo\\Command.Infrastructure\\Command.Infrastructure.csproj": {
               "projectPath": "C:\\Users\\Pedro\\RiderProjects\\microservices-demo\\Command.Infrastructure\\Command.Infrastructure.csproj"
-            },
-            "C:\\Users\\Pedro\\RiderProjects\\microservices-demo\\Platform.Api\\Platform.Api.csproj": {
-              "projectPath": "C:\\Users\\Pedro\\RiderProjects\\microservices-demo\\Platform.Api\\Platform.Api.csproj"
             }
           }
         }

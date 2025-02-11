@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Command.Api.Core;
 
-[Route("api/[controller]")]
+[Route("api/c/[controller]")]
 public class ApiController(IMediator mediator) : ControllerBase
 {
     protected readonly IMediator Mediator = mediator;
