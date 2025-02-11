@@ -5,9 +5,9 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["Command.Api/Command.Api.csproj", "Command.Api/"]
-COPY ["Command.App/Command.App.csproj", "Command.App/"]
-COPY ["Command.Domain/Command.Domain.csproj", "Command.Domain/"]
-COPY ["Command.Infrastructure/Command.Infrastructure.csproj", "Command.Infrastructure/"]
+COPY ["./Command.App/Command.App.csproj", "Command.App/"]
+COPY ["./Command.Domain/Command.Domain.csproj", "Command.Domain/"]
+COPY ["./Command.Infrastructure/Command.Infrastructure.csproj", "Command.Infrastructure/"]
 RUN dotnet restore "Command.Api/Command.Api.csproj"
 COPY . .
 WORKDIR "/src/Command.Api"

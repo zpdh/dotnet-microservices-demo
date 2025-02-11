@@ -17,10 +17,4 @@
       <ProjectReference Include="..\Command.Infrastructure\Command.Infrastructure.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Content Include="..\.dockerignore">
-        <Link>.dockerignore</Link>
-      </Content>
-    </ItemGroup>
-
 </Project>
