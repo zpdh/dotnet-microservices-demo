@@ -1,3 +1,4 @@
+using Command.Api.Core;
 using Command.App;
 using Command.Infrastructure;
 
@@ -14,6 +15,8 @@ builder.Services.AddRouting(opt => {
 
 builder.Services.InjectApplication();
 builder.Services.InjectInfrastructure();
+
+builder.Services.AddExceptionHandler<ExceptionHandler>();
 
 builder.Services.AddOpenApi();
 

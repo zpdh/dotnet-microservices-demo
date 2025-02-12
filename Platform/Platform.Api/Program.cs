@@ -1,3 +1,4 @@
+using Platform.Api.Api.Core;
 using Platform.Api.App;
 using Platform.Api.Infrastructure;
 using Platform.Api.Infrastructure.Extensions;
@@ -13,8 +14,10 @@ builder.Services.AddRouting(opt => {
     opt.LowercaseQueryStrings = true;
 });
 
-builder.Services.AddInfrastructure();
+builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
+
+builder.Services.AddExceptionHandler<ExceptionHandler>();
 
 builder.Services.AddOpenApi();
 
