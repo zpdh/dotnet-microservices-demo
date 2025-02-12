@@ -24,7 +24,12 @@ public sealed class CreatePlatformCommandHandler(
 
         await _repository.InsertAsync(entity);
         await _unitOfWork.SaveChangesAsync();
-        await _platformClient.SendToCommandAsync(entity);
+        var commandResponse = await _platformClient.SendToCommandAsync(entity);
+
+        if (commandResponse.IsFailure)
+        {
+            return Result.Failure<Communication.CreatePlatformResponse>(commandResponse.Error);
+        }
 
         var response = new Communication.CreatePlatformResponse(entity.Id);
 

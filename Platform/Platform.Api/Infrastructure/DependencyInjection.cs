@@ -9,11 +9,11 @@ namespace Platform.Api.Infrastructure;
 
 public static class DependencyInjection
 {
-    public static void AddInfrastructure(this IServiceCollection services)
+    public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDatabase();
         services.AddRepositories();
-        services.AddHttpClients();
+        services.AddHttpClients(configuration);
     }
 
     private static void AddDatabase(this IServiceCollection services)
@@ -27,8 +27,10 @@ public static class DependencyInjection
         services.AddScoped<IRepository<Domain.Platform.Platform>, PlatformRepository>();
     }
 
-    private static void AddHttpClients(this IServiceCollection services)
+    private static void AddHttpClients(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddHttpClient<IPlatformClient, PlatformClient>();
+        var commandUri = configuration["Urls:CommandsService"]!;
+
+        services.AddHttpClient<IPlatformClient, PlatformClient>(client => client.BaseAddress = new Uri(commandUri));
     }
 }
