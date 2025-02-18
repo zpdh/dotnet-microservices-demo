@@ -9,16 +9,23 @@ namespace Platform.Api.Infrastructure;
 
 public static class DependencyInjection
 {
-    public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
+    public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration, IWebHostEnvironment environment)
     {
-        services.AddDatabase();
+        services.AddDatabase(configuration, environment);
         services.AddRepositories();
         services.AddHttpClients(configuration);
     }
 
-    private static void AddDatabase(this IServiceCollection services)
+    private static void AddDatabase(this IServiceCollection services, IConfiguration configuration, IWebHostEnvironment environment)
     {
-        services.AddDbContext<AppDbContext>(opt => opt.UseInMemoryDatabase("MemDb"));
+        if (environment.IsProduction())
+        {
+            services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer(configuration.GetConnectionString("MSSQL")));
+        }
+        else
+        {
+            services.AddDbContext<AppDbContext>(opt => opt.UseInMemoryDatabase("MemDb"));
+        }
     }
 
     private static void AddRepositories(this IServiceCollection services)
