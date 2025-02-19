@@ -1,10 +1,11 @@
-﻿using Platform.Api.Domain.Platform;
+﻿using Microsoft.EntityFrameworkCore;
+using Platform.Api.Domain.Platform;
 using Platform.Api.Infrastructure.Core;
 using Platform.Api.Infrastructure.Core.Data;
 
 namespace Platform.Api.Infrastructure.Extensions;
 
-public static class SeedingExtension
+public static class AppBuilderExtensions
 {
     public static void SeedDatabase(this IApplicationBuilder app)
     {
@@ -18,5 +19,12 @@ public static class SeedingExtension
             new Domain.Platform.Platform("Golang", "Google"));
 
         context.SaveChanges();
+    }
+
+    public static async Task ApplyMigrationsAsync(this IApplicationBuilder app)
+    {
+        await using var serviceScope = app.ApplicationServices.CreateAsyncScope();
+        var context = serviceScope.ServiceProvider.GetService<AppDbContext>()!;
+        await context.Database.MigrateAsync();
     }
 }

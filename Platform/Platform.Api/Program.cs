@@ -1,6 +1,8 @@
+using Microsoft.EntityFrameworkCore;
 using Platform.Api.Api.Core;
 using Platform.Api.App;
 using Platform.Api.Infrastructure;
+using Platform.Api.Infrastructure.Core.Data;
 using Platform.Api.Infrastructure.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -35,7 +37,14 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.SeedDatabase();
+if (!builder.Environment.IsDevelopment())
+{
+    await app.ApplyMigrationsAsync();
+}
+else
+{
+    app.SeedDatabase();
+}
 
 app.UseExceptionHandler(_ => { });
 

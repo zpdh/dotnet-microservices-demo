@@ -18,7 +18,7 @@ public static class DependencyInjection
 
     private static void AddDatabase(this IServiceCollection services, IConfiguration configuration, IWebHostEnvironment environment)
     {
-        if (environment.IsProduction())
+        if (!environment.IsDevelopment())
         {
             services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer(configuration.GetConnectionString("MSSQL")));
         }
