@@ -1,4 +1,5 @@
 ﻿using Command.Domain.Infrastructure.Data;
+using Command.Domain.Infrastructure.Data.Abstractions;
 
 namespace Command.Infrastructure.Core.Data;
 
