@@ -7,17 +7,17 @@ public class Mediator(IServiceProvider services) : IMediator
 {
     private readonly IServiceProvider _services = services;
 
-    public Task<Result> MediateAsync<TRequest>(TRequest request) where TRequest : IRequest
+    public async Task<Result> MediateAsync<TRequest>(TRequest request) where TRequest : IRequest
     {
         var handler = _services.GetRequiredService<IRequestHandler<TRequest>>();
 
-        return handler.HandleAsync(request);
+        return await handler.HandleAsync(request);
     }
 
-    public Task<Result<TResponse>> MediateAsync<TRequest, TResponse>(TRequest request) where TRequest : IRequest<TResponse>
+    public async Task<Result<TResponse>> MediateAsync<TRequest, TResponse>(TRequest request) where TRequest : IRequest<TResponse>
     {
         var handler = _services.GetRequiredService<IRequestHandler<TRequest, TResponse>>();
 
-        return handler.HandleAsync(request);
+        return await handler.HandleAsync(request);
     }
 }
