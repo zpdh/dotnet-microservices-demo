@@ -30,4 +30,9 @@ public sealed class CommandRepository(AppDbContext context) : ICommandRepository
 
         return Result.Success();
     }
+
+    public async Task<List<AppDomain.Command>> GetAllCommandsAsync(int platformId)
+    {
+        return await _commandSet.Where(cmd => cmd.PlatformId == platformId).ToListAsync();
+    }
 }

@@ -27,9 +27,4 @@ public class PlatformRepository(AppDbContext context) : IPlatformRepository
     {
         return await _platformSet.AnyAsync(plat => plat.Id == platformId);
     }
-
-    public async Task<List<Domain.Command.Command>> GetCommandsAsync(int platformId)
-    {
-        return await _commandSet.Where(cmd => cmd.PlatformId == platformId).ToListAsync();
-    }
 }
