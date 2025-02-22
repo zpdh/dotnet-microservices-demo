@@ -1,6 +1,7 @@
 ﻿using Command.Api.Core;
 using Command.App.Core.Messaging.Abstractions;
 using Command.App.Platforms;
+using Command.Domain.Core;
 using Command.Domain.Platform;
 using Microsoft.AspNetCore.Mvc;
 
