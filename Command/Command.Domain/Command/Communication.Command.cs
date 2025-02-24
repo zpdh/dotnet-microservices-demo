@@ -9,4 +9,6 @@ public static class Communication
     public sealed record GetSingleCommandRequest(int CommandId, int PlatformId);
 
     public sealed record GetSingleCommandResponse(Command Command);
+
+    public sealed record CreateCommandRequest(string HowTo, string CommandLine);
 }

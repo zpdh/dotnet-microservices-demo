@@ -29,4 +29,15 @@ public class CommandsController(IMediator mediator) : ApiController(mediator)
 
         return result.IsSuccess ? Ok(result.Value) : HandleFailure(result);
     }
+
+    [HttpPost("platform/{platformId:int}")]
+    public async Task<IActionResult> CreateCommand(int platformId, Communication.CreateCommandRequest request)
+    {
+        var dto = new Dtos.CreateCommandDto(platformId, request.HowTo, request.CommandLine);
+        var command = new CreateCommandCommand(dto);
+
+        var result = await Mediator.MediateAsync(command);
+
+        return result.IsSuccess ? NoContent() : HandleFailure(result);
+    }
 }
