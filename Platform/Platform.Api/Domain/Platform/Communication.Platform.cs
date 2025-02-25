@@ -11,4 +11,6 @@ public static class Communication
     public sealed record GetPlatformByIdRequest(int Id);
 
     public sealed record GetPlatformByIdResponse(int Id, string Name, string Publisher);
+
+    public sealed record PublishPlatformRequest(int Id, string Name, string Event);
 }
