@@ -17,6 +17,7 @@ public static class DependencyInjection
         services.AddDatabase(configuration, environment);
         services.AddRepositories();
         services.AddHttpClients(configuration);
+        services.AddMessageBus(configuration);
     }
 
     private static void AddDatabase(this IServiceCollection services, IConfiguration configuration, IWebHostEnvironment environment)
@@ -44,7 +45,7 @@ public static class DependencyInjection
         services.AddHttpClient<IPlatformClient, PlatformClient>(client => client.BaseAddress = new Uri(commandUri));
     }
 
-    private static void AddEventBus(this IServiceCollection services, IConfiguration configuration)
+    private static void AddMessageBus(this IServiceCollection services, IConfiguration configuration)
     {
         var host = configuration.GetValue<string>("Events:RabbitMQHost")!;
         var port = configuration.GetValue<int>("Events:RabbitMQPort");
