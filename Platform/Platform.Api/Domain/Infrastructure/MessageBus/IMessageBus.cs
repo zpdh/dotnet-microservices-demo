@@ -2,7 +2,7 @@
 
 namespace Platform.Api.Domain.Infrastructure.MessageBus;
 
-public interface IEventBus
+public interface IMessageBus
 {
     Task PublishPlatformAsync(Communication.PublishPlatformRequest request);
 }

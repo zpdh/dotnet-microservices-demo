@@ -51,7 +51,7 @@ public static class DependencyInjection
 
         var connectionFactory = new ConnectionFactory { HostName = host, Port = port };
 
-        services.AddSingleton<IEventPublisher, EventPublisher>(_ => new EventPublisher(connectionFactory));
-        services.AddScoped<IEventBus, EventBus>();
+        services.AddSingleton<IMessagePublisher, MessagePublisher>(_ => new MessagePublisher(connectionFactory));
+        services.AddScoped<IMessageBus, MessageBus>();
     }
 }

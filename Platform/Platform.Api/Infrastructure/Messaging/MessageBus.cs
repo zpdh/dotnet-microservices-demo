@@ -5,13 +5,13 @@ using RabbitMQ.Client;
 
 namespace Platform.Api.Infrastructure.Messaging;
 
-public sealed class EventBus(IEventPublisher eventPublisher) : IEventBus
+public sealed class MessageBus(IMessagePublisher messagePublisher) : IMessageBus
 {
-    private readonly IEventPublisher _eventPublisher = eventPublisher;
+    private readonly IMessagePublisher _messagePublisher = messagePublisher;
 
     public async Task PublishPlatformAsync(Communication.PublishPlatformRequest request)
     {
         var message = JsonSerializer.Serialize(request);
-        await _eventPublisher.PublishAsync(message);
+        await _messagePublisher.PublishAsync(message);
     }
 }

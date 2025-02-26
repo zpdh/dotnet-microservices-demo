@@ -8,12 +8,12 @@ public sealed class ExchangeTypes
     public const string FanoutExchange = "trigger";
 }
 
-public interface IEventPublisher
+public interface IMessagePublisher
 {
     Task PublishAsync(string message);
 }
 
-public class EventPublisher(IConnectionFactory connectionFactory) : IEventPublisher, IDisposable, IAsyncDisposable
+public class MessagePublisher(IConnectionFactory connectionFactory) : IMessagePublisher, IDisposable, IAsyncDisposable
 {
     private readonly IConnectionFactory _connectionFactory = connectionFactory;
 
